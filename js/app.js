@@ -8,14 +8,21 @@ fetch(url)
 .then(data => displayview(data));
 }
 const displayview = data =>{
-    const tempreture = document.getElementById('tepmpreture');
-    // console.log(data.main.temp)
-    tempreture.innerText=data.main.temp;
+    // const tempreture = document.getElementById('tepmpreture');
+    // tempreture.innerText=data.main.temp;
+    setInnerTextById('tempreture', data.main.temp);
+    setInnerTextById('condition', data.weather[0].main);
+    console.log(data.weather[0].main)
+}
+const setInnerTextById = (id, text)=>{
+    const tempreture=document.getElementById(id);
+    tempreture.innerText=text;
 }
 
 document.getElementById('btn-search').addEventListener('click' , function(){
     const fieldsearch = document.getElementById("fill-search");
     const city = fieldsearch.value;
+    document.getElementById('city').innerText = city;
     loadTempreture(city);
 })
 loadTempreture('dhaka');
